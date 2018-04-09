@@ -44,10 +44,7 @@ public class GameManager : MonoBehaviour {
     private float remainingTimeToAnswer;
 
     // end Panel//
-    public Image endGamePanel;
-    public Animator endGamePanelAnim;
-    Button playAgain;
-    Button mainMenu;
+
     public int x;
      //kategori seçimi//
     public GameObject go_Tarih;
@@ -56,15 +53,11 @@ public class GameManager : MonoBehaviour {
     public bool b_mathconnection = false;
     
 
-    Text endGameText;
+ 
 	
 	void Start () {
 
-        playAgain = endGamePanel.GetComponentsInChildren<Button>()[0];
-        mainMenu = endGamePanel.GetComponentsInChildren<Button>()[1];
-        endGameText = endGamePanel.transform.Find("endGameText").GetComponent<Text>();
-
-        endGamePanelAnim = endGamePanel.GetComponent<Animator>();
+      
 
         Spawn = true;
 
@@ -199,9 +192,8 @@ public class GameManager : MonoBehaviour {
                  Debug.Log("Answer Correct " + Wrong);
 
                 timeRunning = false;
-                endGamePanel.gameObject.SetActive(true);
-                endGamePanelAnim.SetTrigger("endGame");
-                endGameText.text = "YAY, you've won! ";
+            EndGamePanel.instance.F_WinPanelOpen();
+              
                 i_level++;
             if (remainingTime > 0)
             {
@@ -217,13 +209,11 @@ public class GameManager : MonoBehaviour {
             else if (Wrong > 0 && Count == 7 )
             {
                 timeRunning = false;
-
+            EndGamePanel.instance.F_LosePanelOpen();
            //     Debug.Log("Answer False " + Wrong);
                 
 
-                endGamePanel.gameObject.SetActive(true);
-                endGamePanelAnim.SetTrigger("endGame");
-                endGameText.text = "Sorry, you're wrong!";
+          
                 Puan.instance.i_levelPuan = 0;
             i_level = 0;
             }
