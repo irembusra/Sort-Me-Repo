@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
 
-    
+    public GameObject go_EndpanelText;
 
 
         private static GameManager _This;
@@ -28,8 +28,9 @@ public class GameManager : MonoBehaviour {
    
     public GameObject[] orderedEvent = new GameObject[7];
 
-   
-   
+    public int remainingTimeInSeconds;
+
+
     public bool Spawn;
     public int Count = 0;
     
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour {
     // süre//
     
     float remainingTime;
-    bool timeRunning;
+    public bool timeRunning=true;
     public Text remainingTimeText;
     private float remainingTimeToAnswer;
 
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour {
 
         if(remainingTime>0)
         {
-            int remainingTimeInSeconds = Mathf.FloorToInt(remainingTime) + 1;
+            remainingTimeInSeconds = Mathf.FloorToInt(remainingTime) + 1;
             remainingTimeText.text =  remainingTimeInSeconds.ToString();
         }
         
@@ -193,16 +194,15 @@ public class GameManager : MonoBehaviour {
 
                 timeRunning = false;
             EndGamePanel.instance.F_WinPanelOpen();
+            go_EndpanelText.transform.GetChild(0).gameObject.SetActive(true);
               
                 i_level++;
-            if (remainingTime > 0)
-            {
+           
+            
                 Puan.instance.i_levelPuan = Mathf.FloorToInt(remainingTime) + 1;
-            }
-            else
-            {
-                Puan.instance.i_levelPuan = 0;
-            }
+               // Puan.instance.F_PuanHesaplama();
+            
+            
 
 
         }
@@ -210,9 +210,9 @@ public class GameManager : MonoBehaviour {
             {
                 timeRunning = false;
             EndGamePanel.instance.F_LosePanelOpen();
-           //     Debug.Log("Answer False " + Wrong);
-                
+            //     Debug.Log("Answer False " + Wrong);
 
+            go_EndpanelText.transform.GetChild(1).gameObject.SetActive(true);
           
                 Puan.instance.i_levelPuan = 0;
             i_level = 0;

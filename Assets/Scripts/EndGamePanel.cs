@@ -11,6 +11,8 @@ public class EndGamePanel : MonoBehaviour {
     Text endGameText;
     public Text T_PanelPuan;
     public Text T_PanelGold;
+    public GameObject go_playagain;
+    public GameObject go_nextLevel;
 
     private static EndGamePanel _This;
 
@@ -31,7 +33,8 @@ public class EndGamePanel : MonoBehaviour {
         playAgain = endGamePanel.GetComponentsInChildren<Button>()[0];
         mainMenu = endGamePanel.GetComponentsInChildren<Button>()[1];
         endGameText = endGamePanel.transform.Find("endGameText").GetComponent<Text>();
-
+        go_nextLevel.SetActive(false);
+        go_playagain.SetActive(false);
         endGamePanelAnim = endGamePanel.GetComponent<Animator>();
     }
 	
@@ -43,17 +46,19 @@ public class EndGamePanel : MonoBehaviour {
     {
         endGamePanel.gameObject.SetActive(true);
         endGamePanelAnim.SetTrigger("endGame");
-        endGameText.text = "Bölümü Geçtiniz";
-        T_PanelPuan.text = "" + Puan.instance.i_levelPuan;
+        endGameText.text = "  TEBRIKLER";
+        T_PanelPuan.text =GameManager.instance.remainingTimeInSeconds.ToString(); 
         T_PanelGold.text = "" + GameManager.instance.i_levelGold;
+        go_nextLevel.SetActive(true);
 
     }
     public void F_LosePanelOpen()
     {
         endGamePanel.gameObject.SetActive(true);
         endGamePanelAnim.SetTrigger("endGame");
-        endGameText.text = "Bölümü Geçemediniz";
+        endGameText.text = " UZGUNUZ";
         T_PanelPuan.text = "0";
         T_PanelGold.text = "0";
+        go_playagain.SetActive(true);
     }
 }
