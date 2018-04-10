@@ -34,4 +34,8 @@ public class UIScripts : MonoBehaviour {
     {
         go_playPanel.SetActive(true);
     }
+    public void F_PlayPaneliKapat()
+    {
+        go_playPanel.SetActive(false);
+    }
 }

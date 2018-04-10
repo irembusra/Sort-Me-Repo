@@ -52,7 +52,7 @@ public class PlayPanel : MonoBehaviour {
 	}
     public void F_PlayPanelKapat()
     {
-        UIScripts.instance.go_playPanel.SetActive(false);
+      //  UIScripts.instance.go_playPanel.SetActive(false);
     }
     public void F_TarihKategori()
     {
