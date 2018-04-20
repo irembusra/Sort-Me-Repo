@@ -7,9 +7,10 @@ public class RegisterDataBaseConnection : MonoBehaviour {
     public InputField userName;
     public InputField userPassword;
     public InputField userAgainPassword;
-
+    
     string CreateUserURL = "http://up-techlabs.com/SortMe/SortMeUser.php";
     // Use this for initialization
+    int x;
     void Start () {
 		
 	}
@@ -17,6 +18,8 @@ public class RegisterDataBaseConnection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+
+
 	}
     public void Createuser(string s_username,string s_password)
     {
