@@ -57,8 +57,8 @@ public class EndGamePanel : MonoBehaviour {
         endGamePanel.gameObject.SetActive(true);
         endGamePanelAnim.SetTrigger("endGame");
         endGameText.text = " UZGUNUZ";
-        T_PanelPuan.text = "0";
-        T_PanelGold.text = "0";
+       
+      
         go_playagain.SetActive(true);
     }
 }

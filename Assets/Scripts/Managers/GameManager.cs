@@ -52,18 +52,15 @@ public class GameManager : MonoBehaviour {
     public GameObject go_Math;
     public bool b_databaseconnection=false;
     public bool b_mathconnection = false;
-    
 
- 
+  
 	
 	void Start () {
 
       
 
         Spawn = true;
-
       
-
         answerCount = 0;
         // Kategori Türü//
         
@@ -152,9 +149,9 @@ public class GameManager : MonoBehaviour {
     public void CheckAnswers()
     {
 
-       
-            //bool b_Wrong = false;
-           int Wrong = 0;
+       // EndGame.instance.EndGameCorrectAnswer();
+        //bool b_Wrong = false;
+        int Wrong = 0;
            // Debug.Log(answerCount);
 
             //going to add checks...
@@ -194,15 +191,16 @@ public class GameManager : MonoBehaviour {
 
                 timeRunning = false;
             EndGamePanel.instance.F_WinPanelOpen();
+           
             go_EndpanelText.transform.GetChild(0).gameObject.SetActive(true);
               
                 i_level++;
            
             
                 Puan.instance.i_levelPuan = Mathf.FloorToInt(remainingTime) + 1;
-               // Puan.instance.F_PuanHesaplama();
-            
-            
+            // Puan.instance.F_PuanHesaplama();
+            ForGamePanel();
+
 
 
         }
@@ -210,12 +208,14 @@ public class GameManager : MonoBehaviour {
             {
                 timeRunning = false;
             EndGamePanel.instance.F_LosePanelOpen();
+            
             //     Debug.Log("Answer False " + Wrong);
 
             go_EndpanelText.transform.GetChild(1).gameObject.SetActive(true);
           
                 Puan.instance.i_levelPuan = 0;
             i_level = 0;
+           ForGamePanel();
             }
 
           //  else
@@ -240,5 +240,15 @@ public class GameManager : MonoBehaviour {
     public void MainMenu()
     {
         SceneManager.LoadScene(0);  //Main Scene index is 0
+    }
+
+    public void ForGamePanel()
+    {
+
+        for(int j=0;j<7;j++)
+
+        {
+            orderedEvent[j].GetComponentInChildren<Text>().text = orderedEvent[j].GetComponentInChildren<Text>().text + "year" + orderedEvent[j].GetComponentInChildren<Event>().Date;
+        }
     }
 }

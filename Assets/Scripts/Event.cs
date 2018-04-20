@@ -19,7 +19,7 @@ public class Event : MonoBehaviour {
         }
     }
     public int Date;
-  
+
    
 
 
@@ -32,7 +32,8 @@ public class Event : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+       
+        
        
     }
 

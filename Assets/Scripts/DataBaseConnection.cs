@@ -27,12 +27,13 @@ public class DataBaseConnection : MonoBehaviour {
     public int year;
     public string olay;
     public string s_jokerYear;
+    public string[] eventarray;
 
     IEnumerator Start()
     {
         if (GameManager.instance.b_databaseconnection==true)
         {
-            WWW itemsData = new WWW("http://localhost/Sortme/SortMeData.php");
+            WWW itemsData = new WWW("http://up-techlabs.com/SortMe/SortMeData.php");
 
             yield return itemsData;
             string itemsDataString = itemsData.text;
@@ -43,7 +44,8 @@ public class DataBaseConnection : MonoBehaviour {
             {
                 print(GetDataValue(items[i], "event:"));
                 GameManager.instance.Event[i].GetComponentInChildren<Text>().text = GetDataValue(items[i], "event:");
-                olay = GetDataValue(items[0], "event:");
+                olay = GetDataValue(items[i], "event:");
+                
             }
             for (int i = 0; i < 7; i++)
             {
@@ -61,7 +63,7 @@ public class DataBaseConnection : MonoBehaviour {
     }
 
 
-        string GetDataValue(string data, string index)
+       public string GetDataValue(string data, string index)
 
         {
             // print(data);
